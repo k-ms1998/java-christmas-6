@@ -1,6 +1,7 @@
 package christmas.enums;
 
 public enum Menu {
+
     SOUP("양송이수프", 6_000, FoodType.APPETIZER),
     TAPAS("타파스", 5_500, FoodType.APPETIZER),
     SALAD("시저샐러드", 8_000, FoodType.APPETIZER),
@@ -13,6 +14,7 @@ public enum Menu {
     ZERO_COKE("제로콜라", 3_000, FoodType.DRINK),
     RED_WINE("레드와인", 60_000, FoodType.DRINK),
     CHAMPAGNE("샴페인", 25_000, FoodType.DRINK);
+
     private String name;
     private int price;
     private FoodType foodType;
@@ -21,6 +23,18 @@ public enum Menu {
         this.name = name;
         this.price = price;
         this.foodType = foodType;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPrice() {
+        return this.price;
+    }
+
+    public FoodType getFoodType() {
+        return foodType;
     }
 
     public static Menu findByName(String name){
