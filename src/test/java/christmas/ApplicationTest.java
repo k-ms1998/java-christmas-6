@@ -42,9 +42,58 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 날짜_예외_테스트_0보다작음() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 날짜_예외_테스트_31보다큼() {
+        assertSimpleTest(() -> {
+            runException("32");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
     void 주문_예외_테스트() {
         assertSimpleTest(() -> {
             runException("3", "제로콜라-a");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_2() {
+        assertSimpleTest(() -> {
+            runException("3", "없는음료-3");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_3() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-2-3");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 주문_예외_테스트_4() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-2, 제로콜라-3");
+            assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        });
+    }
+
+
+    @Test
+    void 주문_예외_테스트_5() {
+        assertSimpleTest(() -> {
+            runException("3", "제로콜라-2,제로콜라-3");
             assertThat(output()).contains("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         });
     }
